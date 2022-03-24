@@ -3,15 +3,15 @@ using Newtonsoft.Json.Linq;
 
 namespace FuelSDK
 {
-    /// <summary>
-    /// ETCampaignAsset - Represents an asset associated with a campaign.
-    /// </summary>
-    public class ETCampaignAsset : FuelObject
-    {
-        /// <summary>
-        /// Gets or sets the type of the campaign asset.
-        /// </summary>
-        /// <value>The type.</value>
+	/// <summary>
+	/// ETCampaignAsset - Represents an asset associated with a campaign.
+	/// </summary>
+	public class ETCampaignAsset : FuelObject
+	{
+		/// <summary>
+		/// Gets or sets the type of the campaign asset.
+		/// </summary>
+		/// <value>The type.</value>
 		public string Type { get; set; }
 		/// <summary>
 		/// Gets or sets the campaign identifier of the campaign asset.
@@ -28,19 +28,19 @@ namespace FuelSDK
 		/// </summary>
 		/// <value>The item identifier.</value>
 		public string ItemID { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:FuelSDK.ETCampaignAsset"/> class.
-        /// </summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:FuelSDK.ETCampaignAsset"/> class.
+		/// </summary>
 		public ETCampaignAsset()
 		{
 			Endpoint = "https://www.exacttargetapis.com/hub/v1/campaigns/{CampaignID}/assets/{ID}";
 			URLProperties = new[] { "CampaignID", "ID" };
 			RequiredURLProperties = new[] { "CampaignID" };
 		}
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:FuelSDK.ETCampaignAsset"/> class.
-        /// </summary>
-        /// <param name="obj">Javascript Object.</param>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:FuelSDK.ETCampaignAsset"/> class.
+		/// </summary>
+		/// <param name="obj">Javascript Object.</param>
 		public ETCampaignAsset(JObject obj)
 		{
 			if (obj["id"] != null)
@@ -74,9 +74,9 @@ namespace FuelSDK
 		/// </summary>
 		/// <returns>The <see cref="T:FuelSDK.GetReturn"/>.</returns>
 		public GetReturn GetMoreResults() { Page++; var r = new GetReturn(this); Page = r.LastPageNumber; return r; }
-    }
+	}
 
-    [Obsolete("ET_Campaign will be removed in future release. Please use ETCampaign instead.")]
+	[Obsolete("ET_Campaign will be removed in future release. Please use ETCampaign instead.")]
 	public class ET_CampaignAsset : ETCampaignAsset
 	{
 		

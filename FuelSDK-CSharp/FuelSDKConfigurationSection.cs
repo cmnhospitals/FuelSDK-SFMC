@@ -1,74 +1,45 @@
 ﻿using System;
-using System.Configuration;
 
 namespace FuelSDK
 {
-	/// <summary>
-	/// FuelSDKConfigurationSection - Represents ConfigurationSection
-	/// </summary>
-	public class FuelSDKConfigurationSection : ConfigurationSection
-	{
+    /// <summary>
+    /// FuelSDKConfigurationSection - Represents ConfigurationSection
+    /// </summary>
+    public class FuelSDKConfigurationSection
+    {
         /// <summary>
         /// Gets or sets the app signature.
         /// </summary>
         /// <value>The app signature.</value>
-		[ConfigurationProperty("appSignature", IsRequired = true)]
-		public string AppSignature
-		{
-			get { return (string)this["appSignature"]; }
-			set { this["appSignature"] = value; }
-		}
+        public string AppSignature { get; set; }
+
         /// <summary>
         /// Gets or sets the client identifier.
         /// </summary>
         /// <value>The client identifier.</value>
-		[ConfigurationProperty("clientId", IsRequired = true)]
-		public string ClientId
-		{
-			get { return (string)this["clientId"]; }
-			set { this["clientId"] = value; }
-		}
+        public string ClientId { get; set; }
+
         /// <summary>
         /// Gets or sets the client secret.
         /// </summary>
         /// <value>The client secret.</value>
-		[ConfigurationProperty("clientSecret", IsRequired = true)]
-		public string ClientSecret
-		{
-			get { return (string)this["clientSecret"]; }
-			set { this["clientSecret"] = value; }
-		}
+        public string ClientSecret { get; set; }
+
         /// <summary>
         /// Gets or sets the SOAP end point.
         /// </summary>
         /// <value>The SOAP end point.</value>
-		[ConfigurationProperty("soapEndPoint", DefaultValue = "https://webservice.s4.exacttarget.com/Service.asmx")]
-		public string SoapEndPoint
-		{
-			get { return (string)this["soapEndPoint"]; }
-			set { this["soapEndPoint"] = value; }
-		}
-		[ConfigurationProperty("authEndPoint", DefaultValue = "https://auth-qa.exacttargetapis.com/v1/requestToken?legacy=1")]
-		public string AuthenticationEndPoint
-		{
-			get { return (string)this["authEndPoint"]; }
-			set { this["authEndPoint"] = value; }
-		}
+        public string SoapEndPoint { get; set; }
+
+        public string AuthenticationEndPoint { get; set; }
+
         /// <summary>
         /// Clone this instance.
         /// </summary>
         /// <returns>The clone.</returns>
-		public object Clone()
-		{
-			return MemberwiseClone();
-		}
-        /// <summary>
-        /// Ises the read only.
-        /// </summary>
-        /// <returns><c>true</c>, if read only, <c>false</c> otherwise.</returns>
-		public override bool IsReadOnly()
-		{
-			return false;
-		}
-	}
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
+    }
 }

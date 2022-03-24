@@ -5,10 +5,10 @@ namespace FuelSDK
 	/// ETPropertyDefinition - Defines the properties on the object type.
 	/// </summary>
 	public class ETPropertyDefinition : PropertyDefinition
-    {
-        
-    }
+	{
+		
+	}
 
 	[Obsolete("ET_PropertyDefinition will be removed in future release. Please use ETPropertyDefinition instead.")]
-    public class ET_PropertyDefinition : ETPropertyDefinition { }
+	public class ET_PropertyDefinition : ETPropertyDefinition { }
 }

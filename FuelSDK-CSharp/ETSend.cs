@@ -5,7 +5,7 @@ namespace FuelSDK
 	/// ETSend - Used to send email and retrieve aggregate data based on a JobID.
 	/// </summary>
 	public class ETSend : Send
-    {
+	{
 		/// <summary>
 		/// Post this instance.
 		/// </summary>
@@ -36,9 +36,9 @@ namespace FuelSDK
 		/// </summary>
 		/// <returns>The <see cref="T:FuelSDK.InfoReturn"/> object..</returns>
 		public InfoReturn Info() { return new InfoReturn(this); }
-    }
+	}
 
-    [Obsolete("ET_Send will be removed in future release. Please use ETSend instead.")]
+	[Obsolete("ET_Send will be removed in future release. Please use ETSend instead.")]
 	public class ET_Send : ETSend
 	{
 		

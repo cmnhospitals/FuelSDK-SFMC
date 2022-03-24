@@ -5,22 +5,22 @@ namespace FuelSDK
 	/// ETTriggeredSendDefinition - Defines a triggered send in the account.
 	/// </summary>
 	public class ETTriggeredSendDefinition : TriggeredSendDefinition
-    {
-        /// <summary>
-        /// Gets or sets the folder identifier.
-        /// </summary>
-        /// <value>The folder identifier.</value>
+	{
+		/// <summary>
+		/// Gets or sets the folder identifier.
+		/// </summary>
+		/// <value>The folder identifier.</value>
 		public int? FolderID { get; set; }
-        internal string FolderMediaType = "triggered_send";
-        /// <summary>
-        /// Gets or sets the subscribers.
-        /// </summary>
-        /// <value>The subscribers.</value>
+		internal string FolderMediaType = "triggered_send";
+		/// <summary>
+		/// Gets or sets the subscribers.
+		/// </summary>
+		/// <value>The subscribers.</value>
 		public ETSubscriber[] Subscribers { get; set; }
-        /// <summary>
-        /// Send this instance.
-        /// </summary>
-        /// <returns>The <see cref="T:FuelSDK.SendReturn"/></returns>
+		/// <summary>
+		/// Send this instance.
+		/// </summary>
+		/// <returns>The <see cref="T:FuelSDK.SendReturn"/></returns>
 		public SendReturn Send()
 		{
 			var ts = new ETTriggerSend
@@ -63,7 +63,7 @@ namespace FuelSDK
 		/// </summary>
 		/// <returns>The <see cref="T:FuelSDK.InfoReturn"/> object..</returns>
 		public InfoReturn Info() { return new InfoReturn(this); }
-    }
+	}
 
 	[Obsolete("ET_TriggeredSend will be removed in future release. Please use ETTriggeredSendDefinition instead.")]
 	public class ET_TriggeredSend : ETTriggeredSendDefinition

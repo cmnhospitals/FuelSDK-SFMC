@@ -2,18 +2,18 @@
 namespace FuelSDK
 {
 	/// <summary>
-    /// ETContentArea - Represents a ContentArea class
+	/// ETContentArea - Represents a ContentArea class
 	/// A ContentArea represents a defined section of reusable content. One or many ContentAreas can be defined for an Email object. 
-    /// A ContentArea is always acted upon in the context of an Email object.
-    /// Valid values for the Layout property include the following:
-    /// </summary>
-    public class ETContentArea : ContentArea
-    {
+	/// A ContentArea is always acted upon in the context of an Email object.
+	/// Valid values for the Layout property include the following:
+	/// </summary>
+	public class ETContentArea : ContentArea
+	{
 		internal string FolderMediaType = "content";
-        /// <summary>
-        /// Gets or sets the folder identifier.
-        /// </summary>
-        /// <value>The folder identifier.</value>
+		/// <summary>
+		/// Gets or sets the folder identifier.
+		/// </summary>
+		/// <value>The folder identifier.</value>
 		public int? FolderID { get; set; }
 		/// <summary>
 		/// Post this instance.
@@ -45,7 +45,7 @@ namespace FuelSDK
 		/// </summary>
 		/// <returns>The <see cref="T:FuelSDK.InfoReturn"/> object..</returns>
 		public InfoReturn Info() { return new InfoReturn(this); }
-    }
+	}
 
 	[Obsolete("ET_ContentArea will be removed in future release. Please use ETContentArea instead.")]
 	public class ET_ContentArea : ETContentArea

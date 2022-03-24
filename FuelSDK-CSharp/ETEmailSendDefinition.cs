@@ -5,16 +5,16 @@ namespace FuelSDK
 	/// ETEmailSendDefinition - Record that contains the message information, sender profile, delivery profile, and audience information..
 	/// </summary>
 	public class ETEmailSendDefinition : EmailSendDefinition
-    {
+	{
 		internal string FolderMediaType = "userinitiatedsends";
-        /// <summary>
-        /// The last task identifier.
-        /// </summary>
+		/// <summary>
+		/// The last task identifier.
+		/// </summary>
 		internal string LastTaskID = string.Empty;
-        /// <summary>
-        /// Gets or sets the folder identifier.
-        /// </summary>
-        /// <value>The folder identifier.</value>
+		/// <summary>
+		/// Gets or sets the folder identifier.
+		/// </summary>
+		/// <value>The folder identifier.</value>
 		public int? FolderID { get; set; }
 		/// <summary>
 		/// Post this instance.
@@ -46,10 +46,10 @@ namespace FuelSDK
 		/// </summary>
 		/// <returns>The <see cref="T:FuelSDK.InfoReturn"/> object..</returns>
 		public InfoReturn Info() { return new InfoReturn(this); }
-        /// <summary>
-        /// Send this instance.
-        /// </summary>
-        /// <returns>The <see cref="T:FuelSDK.PerformReturn"/> object.</returns>
+		/// <summary>
+		/// Send this instance.
+		/// </summary>
+		/// <returns>The <see cref="T:FuelSDK.PerformReturn"/> object.</returns>
 		public PerformReturn Send()
 		{
 			var r = new PerformReturn(this, "start");
@@ -57,10 +57,10 @@ namespace FuelSDK
 				LastTaskID = ((ResultDetail)r.Results[0]).Task.ID;
 			return r;
 		}
-        /// <summary>
-        /// Status of this instance.
-        /// </summary>
-        /// <returns>The <see cref="T:FuelSDK.GetReturn"/> object.</returns>
+		/// <summary>
+		/// Status of this instance.
+		/// </summary>
+		/// <returns>The <see cref="T:FuelSDK.GetReturn"/> object.</returns>
 		public GetReturn Status()
 		{
 			if (LastTaskID == string.Empty)
@@ -73,9 +73,9 @@ namespace FuelSDK
 			LastRequestID = r.RequestID;
 			return r;
 		}
-    }
+	}
 
-    [Obsolete("ET_EmailSendDefinition will be removed in future release. Please use ETEmailSendDefinition instead.")]
+	[Obsolete("ET_EmailSendDefinition will be removed in future release. Please use ETEmailSendDefinition instead.")]
 	public class ET_EmailSendDefinition : ETEmailSendDefinition
 	{
 		

@@ -5,12 +5,12 @@ namespace FuelSDK
 	/// ETList - Represent A marketing list of subscribers.
 	/// </summary>
 	public class ETList : List
-    {
+	{
 		internal string FolderMediaType = "list";
-        /// <summary>
-        /// Gets or sets the folder identifier.
-        /// </summary>
-        /// <value>The folder identifier.</value>
+		/// <summary>
+		/// Gets or sets the folder identifier.
+		/// </summary>
+		/// <value>The folder identifier.</value>
 		public int? FolderID { get; set; }
 		/// <summary>
 		/// Post this instance.
@@ -42,12 +42,12 @@ namespace FuelSDK
 		/// </summary>
 		/// <returns>The <see cref="T:FuelSDK.InfoReturn"/> object..</returns>
 		public InfoReturn Info() { return new InfoReturn(this); }
-    }
+	}
 
-    [Obsolete("ET_List will be removed in future release. Please use ETList instead.")]
-    public class ET_List : ETList 
-    {
+	[Obsolete("ET_List will be removed in future release. Please use ETList instead.")]
+	public class ET_List : ETList 
+	{
 		
-    }
+	}
 	
 }

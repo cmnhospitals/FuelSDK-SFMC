@@ -13,45 +13,45 @@ namespace FuelSDK
 	/// </summary>
 	public partial class APIObject
 	{
-        /// <summary>
-        /// Gets or sets the authentication stub.
-        /// </summary>
-        /// <value>The authentication stub.</value>
+		/// <summary>
+		/// Gets or sets the authentication stub.
+		/// </summary>
+		/// <value>The authentication stub.</value>
 		[XmlIgnore, JsonIgnore]
 		public ETClient AuthStub { get; set; }
-        /// <summary>
-        /// Gets or sets the properties.
-        /// </summary>
-        /// <value>The properties.</value>
+		/// <summary>
+		/// Gets or sets the properties.
+		/// </summary>
+		/// <value>The properties.</value>
 		[XmlIgnore]
 		public string[] Props { get; set; }
-        /// <summary>
-        /// Gets or sets the search filter.
-        /// </summary>
-        /// <value>The search filter.</value>
+		/// <summary>
+		/// Gets or sets the search filter.
+		/// </summary>
+		/// <value>The search filter.</value>
 		[XmlIgnore]
 		public FilterPart SearchFilter { get; set; }
-        /// <summary>
-        /// Gets or sets the last request identifier.
-        /// </summary>
-        /// <value>The last request identifier.</value>
+		/// <summary>
+		/// Gets or sets the last request identifier.
+		/// </summary>
+		/// <value>The last request identifier.</value>
 		[XmlIgnore]
 		public string LastRequestID { get; set; }
-        /// <summary>
-        /// Gets or sets the directory path.
-        /// </summary>
-        /// <value>The directory path.</value>
+		/// <summary>
+		/// Gets or sets the directory path.
+		/// </summary>
+		/// <value>The directory path.</value>
 		[XmlElementAttribute(Order = 10000), JsonIgnore]
 		public string DirectoryPath { get; set; }
-        /// <summary>
-        /// Gets the unique identifier.
-        /// Returns the ID if the value is greater than 0.
-        /// If not and Object ID is not null returns Object ID.
-        /// If not and Customer Key is not null returns Customer Key.
-        /// If not throw  throws error.
-        /// </summary>
-        /// <exception cref="System.InvalidOperationException">
-        /// <value>The unique identifier.</value>
+		/// <summary>
+		/// Gets the unique identifier.
+		/// Returns the ID if the value is greater than 0.
+		/// If not and Object ID is not null returns Object ID.
+		/// If not and Customer Key is not null returns Customer Key.
+		/// If not throw  throws error.
+		/// </summary>
+		/// <exception cref="System.InvalidOperationException">
+		/// <value>The unique identifier.</value>
 		[XmlIgnore, JsonIgnore]
 		public string UniqueID
 		{

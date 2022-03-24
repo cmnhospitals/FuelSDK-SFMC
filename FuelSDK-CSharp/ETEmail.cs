@@ -5,12 +5,12 @@ namespace FuelSDK
 	/// ETEmail - Represents an email in a Marketing Cloud account.
 	/// </summary>
 	public class ETEmail : Email
-    {
+	{
 		internal string FolderMediaType = "email";
-        /// <summary>
-        /// Gets or sets the folder identifier.
-        /// </summary>
-        /// <value>The folder identifier.</value>
+		/// <summary>
+		/// Gets or sets the folder identifier.
+		/// </summary>
+		/// <value>The folder identifier.</value>
 		public int? FolderID { get; set; }
 		/// <summary>
 		/// Post this instance.
@@ -42,7 +42,7 @@ namespace FuelSDK
 		/// </summary>
 		/// <returns>The <see cref="T:FuelSDK.InfoReturn"/> object..</returns>
 		public InfoReturn Info() { return new InfoReturn(this); }
-    }
+	}
 
 	[Obsolete("ET_Email will be removed in future release. Please use ETEmail instead.")]
 	public class ET_Email : ETEmail

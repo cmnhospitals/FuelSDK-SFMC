@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.Xml.Linq;
-using System.Xml.Serialization;
-using System.Xml.XPath;
 using JWT;
 using JWT.Serializers;
 using Newtonsoft.Json.Linq;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.FileExtensions;
+using Microsoft.Extensions.Configuration.Json;
+using Microsoft.Extensions.Configuration.Binder;
 
 namespace FuelSDK
 {
@@ -45,11 +45,18 @@ namespace FuelSDK
 
         public ETClient(string jwt)
             : this(new NameValueCollection { { "jwt", jwt } }, null) { }
+
         public ETClient(NameValueCollection parameters = null, RefreshState refreshState = null)
         {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+
+            var config = builder.Build();
+
             // Get configuration file and set variables
-            configSection = (FuelSDKConfigurationSection)ConfigurationManager.GetSection("fuelSDK");
-            configSection = (configSection != null ? (FuelSDKConfigurationSection)configSection.Clone() : new FuelSDKConfigurationSection());
+            configSection = (FuelSDKConfigurationSection)config.GetSection("FuelSDK").Get<FuelSDKConfigurationSection>();
+
             if (parameters != null)
             {
                 if (parameters.AllKeys.Contains("appSignature"))
@@ -59,10 +66,10 @@ namespace FuelSDK
                 if (parameters.AllKeys.Contains("clientSecret"))
                     configSection.ClientSecret = parameters["clientSecret"];
                 if (parameters.AllKeys.Contains("soapEndPoint"))
-                    configSection.SoapEndPoint = parameters["soapEndPoint"];
+                    configSection.SoapEndPoint = parameters["soapEndPoint"]; //https://webservice.s4.exacttarget.com/Service.asmx
                 if (parameters.AllKeys.Contains("authEndPoint"))
                 {
-                    configSection.AuthenticationEndPoint = parameters["authEndPoint"];
+                    configSection.AuthenticationEndPoint = parameters["authEndPoint"]; //https://auth-qa.exacttargetapis.com/v1/requestToken?legacy=1
                 }
             }
 
@@ -108,18 +115,22 @@ namespace FuelSDK
             // Find the appropriate endpoint for the acccount
             var grSingleEndpoint = new ETEndpoint { AuthStub = this, Type = "soap" }.Get();
             if (grSingleEndpoint.Status && grSingleEndpoint.Results.Length == 1)
+            {
                 configSection.SoapEndPoint = ((ETEndpoint)grSingleEndpoint.Results[0]).URL;
+            }
             else
+            {
                 throw new Exception("Unable to determine stack using /platform/v1/endpoints: " + grSingleEndpoint.Message);
+            }
 
             // Create the SOAP binding for call with Oauth.
-
             SoapClient = new SoapClient(GetSoapBinding(), new EndpointAddress(new Uri(configSection.SoapEndPoint)));
             SoapClient.ClientCredentials.UserName.UserName = "*";
             SoapClient.ClientCredentials.UserName.Password = "*";
 
             // Find Organization Information
             if (organizationFind)
+            {
                 using (var scope = new OperationContextScope(SoapClient.InnerChannel))
                 {
                     // Add oAuth token to SOAP header.
@@ -132,16 +143,18 @@ namespace FuelSDK
                     OperationContext.Current.OutgoingMessageProperties.Add(System.ServiceModel.Channels.HttpRequestMessageProperty.Name, httpRequest);
                     httpRequest.Headers.Add(HttpRequestHeader.UserAgent, ETClient.SDKVersion);
 
-                    string requestID;
-                    APIObject[] results;
-                    var r = SoapClient.Retrieve(new RetrieveRequest { ObjectType = "BusinessUnit", Properties = new[] { "ID", "Client.EnterpriseID" } }, out requestID, out results);
-                    if (r == "OK" && results.Length > 0)
+                    var req = new RetrieveRequest { ObjectType = "BusinessUnit", Properties = new[] { "ID", "Client.EnterpriseID" } };
+                    var req1 = new RetrieveRequest1(req);
+                    var r = SoapClient.RetrieveAsync(req1).Result;
+
+                    if (r.OverallStatus == "OK" && r.Results.Length > 0)
                     {
-                        EnterpriseId = results[0].Client.EnterpriseID.ToString();
-                        OrganizationId = results[0].ID.ToString();
+                        EnterpriseId = r.Results[0].Client.EnterpriseID.ToString();
+                        OrganizationId = r.Results[0].ID.ToString();
                         Stack = GetStackFromSoapEndPoint(new Uri(configSection.SoapEndPoint));
                     }
                 }
+            }
         }
 
         private string DecodeJWT(string jwt, string key)
@@ -160,7 +173,9 @@ namespace FuelSDK
         {
             var parts = uri.Host.Split('.');
             if (parts.Length < 2 || !parts[0].Equals("webservice", StringComparison.OrdinalIgnoreCase))
+            {
                 throw new Exception("not exacttarget.com");
+            }
             return (parts[1] == "exacttarget" ? "s1" : parts[1].ToLower());
         }
 
@@ -171,7 +186,7 @@ namespace FuelSDK
                 SecurityBindingElement.CreateUserNameOverTransportBindingElement(),
                 new TextMessageEncodingBindingElement
                 {
-                    MessageVersion = MessageVersion.Soap12WSAddressingAugust2004,
+                    MessageVersion = MessageVersion.Soap12WSAddressing10,
                     ReaderQuotas =
                     {
                         MaxDepth = 32,
@@ -185,9 +200,9 @@ namespace FuelSDK
                 {
                     TransferMode = TransferMode.Buffered,
                     MaxReceivedMessageSize = 655360000,
-                    MaxBufferSize = 655360000,
-                    KeepAliveEnabled = true
-                } })
+                    MaxBufferSize = 655360000
+                }
+            })
             {
                 Name = "UserNameSoapBinding",
                 Namespace = "Core.Soap",

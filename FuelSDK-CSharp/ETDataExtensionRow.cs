@@ -4,29 +4,29 @@ using System.Linq;
 
 namespace FuelSDK
 {
-    /// <summary>
-    /// ETDataExtensionRow - Represents each row within a data extension.
-    /// </summary>
-    public class ETDataExtensionRow : DataExtensionObject
-    {
-        /// <summary>
-        /// Gets or sets the name of the data extension.
-        /// </summary>
-        /// <value>The name of the data extension.</value>
+	/// <summary>
+	/// ETDataExtensionRow - Represents each row within a data extension.
+	/// </summary>
+	public class ETDataExtensionRow : DataExtensionObject
+	{
+		/// <summary>
+		/// Gets or sets the name of the data extension.
+		/// </summary>
+		/// <value>The name of the data extension.</value>
 		public string DataExtensionName { get; set; }
-        /// <summary>
-        /// Gets or sets the data extension customer key.
-        /// </summary>
-        /// <value>The data extension customer key.</value>
+		/// <summary>
+		/// Gets or sets the data extension customer key.
+		/// </summary>
+		/// <value>The data extension customer key.</value>
 		public string DataExtensionCustomerKey { get; set; }
-        /// <summary>
-        /// Gets or sets the column values.
-        /// </summary>
-        /// <value>The column values.</value>
+		/// <summary>
+		/// Gets or sets the column values.
+		/// </summary>
+		/// <value>The column values.</value>
 		public Dictionary<string, string> ColumnValues { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:FuelSDK.ETDataExtensionRow"/> class.
-        /// </summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:FuelSDK.ETDataExtensionRow"/> class.
+		/// </summary>
 		public ETDataExtensionRow()
 		{
 			ColumnValues = new Dictionary<string, string>();
@@ -154,9 +154,9 @@ namespace FuelSDK
 					throw new Exception("Unable to process ETDataExtensionRow request due to unable to find DataExtension based on DataExtensionName provided.");
 			}
 		}
-    }
+	}
 
-    [Obsolete("ET_DataExtensionRow will be removed in future release. Please use ETDataExtensionRow instead.")]
+	[Obsolete("ET_DataExtensionRow will be removed in future release. Please use ETDataExtensionRow instead.")]
 	public class ET_DataExtensionRow : ETDataExtensionRow
 	{
 

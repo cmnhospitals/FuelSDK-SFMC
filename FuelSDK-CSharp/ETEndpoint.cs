@@ -3,34 +3,34 @@ using Newtonsoft.Json.Linq;
 
 namespace FuelSDK
 {
-    /// <summary>
-    /// ETEndpoint - Represent an EndPoint.
-    /// </summary>
-    public class ETEndpoint : FuelObject
-    {
-        /// <summary>
-        /// Gets or sets the type.
-        /// </summary>
-        /// <value>The type.</value>
+	/// <summary>
+	/// ETEndpoint - Represent an EndPoint.
+	/// </summary>
+	public class ETEndpoint : FuelObject
+	{
+		/// <summary>
+		/// Gets or sets the type.
+		/// </summary>
+		/// <value>The type.</value>
 		public string Type { get; set; }
-        /// <summary>
-        /// Gets or sets the URL.
-        /// </summary>
-        /// <value>The URL.</value>
+		/// <summary>
+		/// Gets or sets the URL.
+		/// </summary>
+		/// <value>The URL.</value>
 		public string URL { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:FuelSDK.ETEndpoint"/> class.
-        /// </summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:FuelSDK.ETEndpoint"/> class.
+		/// </summary>
 		public ETEndpoint()
 		{
 			Endpoint = "https://www.exacttargetapis.com/platform/v1/endpoints/{Type}";
 			URLProperties = new[] { "Type" };
 			RequiredURLProperties = new string[0];
 		}
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:FuelSDK.ETEndpoint"/> class.
-        /// </summary>
-        /// <param name="obj">Javascript Object.</param>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:FuelSDK.ETEndpoint"/> class.
+		/// </summary>
+		/// <param name="obj">Javascript Object.</param>
 		public ETEndpoint(JObject obj)
 		{
 			if (obj["type"] != null)
@@ -47,11 +47,11 @@ namespace FuelSDK
 		/// </summary>
 		/// <returns>The <see cref="T:FuelSDK.GetReturn"/> object..</returns>
 		public GetReturn GetMoreResults() { Page++; var r = new GetReturn(this); Page = r.LastPageNumber; return r; }
-    }
+	}
 
-    [Obsolete("ET_Endpoint will be removed in future release. Please use ETEndpoint instead.")]
-    public class ET_Endpoint : ETEndpoint
-    {
+	[Obsolete("ET_Endpoint will be removed in future release. Please use ETEndpoint instead.")]
+	public class ET_Endpoint : ETEndpoint
+	{
 
-    }
+	}
 }

@@ -5,17 +5,17 @@ namespace FuelSDK
 	/// ETDataExtension - Represents a data extension within an account.
 	/// </summary>
 	public class ETDataExtension : DataExtension
-    {
+	{
 		internal string FolderMediaType = "dataextension";
-        /// <summary>
-        /// Gets or sets the folder identifier.
-        /// </summary>
-        /// <value>The folder identifier.</value>
+		/// <summary>
+		/// Gets or sets the folder identifier.
+		/// </summary>
+		/// <value>The folder identifier.</value>
 		public int? FolderID { get; set; }
-        /// <summary>
-        /// Gets or sets the columns.
-        /// </summary>
-        /// <value>The columns.</value>
+		/// <summary>
+		/// Gets or sets the columns.
+		/// </summary>
+		/// <value>The columns.</value>
 		public ETDataExtensionColumn[] Columns { get; set; }
 		/// <summary>
 		/// Post this instance.
@@ -96,11 +96,11 @@ namespace FuelSDK
 		/// </summary>
 		/// <returns>The <see cref="T:FuelSDK.InfoReturn"/> object..</returns>
 		public InfoReturn Info() { return new InfoReturn(this); }
-    }
+	}
 
-    [Obsolete("ET_DataExtension will be removed in future release. Please use ETDataExtension instead.")]
+	[Obsolete("ET_DataExtension will be removed in future release. Please use ETDataExtension instead.")]
 	public class ET_DataExtension : ETDataExtension
 	{
-        
+		
 	}
 }

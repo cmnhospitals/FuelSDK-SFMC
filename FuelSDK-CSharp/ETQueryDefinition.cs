@@ -5,7 +5,7 @@ namespace FuelSDK
 	/// ETQueryDefinition - Represents a SQL query activity accessed and performed by the SOAP API.
 	/// </summary>
 	public class ETQueryDefinition : QueryDefinition
-    {
+	{
 		/// <summary>
 		/// Post this instance.
 		/// </summary>
@@ -36,7 +36,7 @@ namespace FuelSDK
 		/// </summary>
 		/// <returns>The <see cref="T:FuelSDK.InfoReturn"/> object..</returns>
 		public InfoReturn Info() { return new InfoReturn(this); }
-    }
+	}
 
 	[Obsolete("ET_QueryDefinition will be removed in future release. Please use ETQueryDefinition instead.")]
 	public class ET_QueryDefinition : ETQueryDefinition

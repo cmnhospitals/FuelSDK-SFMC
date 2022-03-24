@@ -1,5 +1,4 @@
-﻿using System;
-namespace FuelSDK
+﻿namespace FuelSDK
 {
 	/// <summary>
 	/// SendReturn - Represents a FuelReturn object returns as result of an Send operation.

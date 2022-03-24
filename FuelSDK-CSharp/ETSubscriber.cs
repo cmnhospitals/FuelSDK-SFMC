@@ -5,7 +5,7 @@ namespace FuelSDK
 	/// ETSubscriber - A person subscribed to receive email or SMS communication.
 	/// </summary>
 	public class ETSubscriber : Subscriber
-    {
+	{
 		/// <summary>
 		/// Post this instance.
 		/// </summary>
@@ -36,9 +36,9 @@ namespace FuelSDK
 		/// </summary>
 		/// <returns>The <see cref="T:FuelSDK.InfoReturn"/> object..</returns>
 		public InfoReturn Info() { return new InfoReturn(this); }
-    }
+	}
 
-    [Obsolete("ET_Subscriber will be removed in future release. Please use ETSubscriber instead.")]
+	[Obsolete("ET_Subscriber will be removed in future release. Please use ETSubscriber instead.")]
 	public class ET_Subscriber : ETSubscriber
 	{
 		

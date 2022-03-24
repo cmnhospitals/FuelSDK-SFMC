@@ -2,10 +2,10 @@
 namespace FuelSDK
 {
 	/// <summary>
-    /// ETImportDefinition - Defines a reusable pattern of import options.
+	/// ETImportDefinition - Defines a reusable pattern of import options.
 	/// </summary>
 	public class ETImportDefinition : ImportDefinition
-    {
+	{
 		internal string LastTaskID = string.Empty;
 		/// <summary>
 		/// Post this instance.
@@ -65,10 +65,10 @@ namespace FuelSDK
 				LastTaskID = ((ResultDetail)r.Results[0]).Task.ID;
 			return r;
 		}
-    }
+	}
 
-    [Obsolete("ET_Import will be removed in future release. Please use ETImportDefinition instead.")]
-    public class ET_Import : ETImportDefinition
+	[Obsolete("ET_Import will be removed in future release. Please use ETImportDefinition instead.")]
+	public class ET_Import : ETImportDefinition
 	{
 		
 	}

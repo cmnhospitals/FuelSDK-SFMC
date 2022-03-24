@@ -5,15 +5,15 @@ namespace FuelSDK
 	/// Contains SMTP and other information pertaining to the specific event of an email message bounce.
 	/// </summary>
 	public class ETBounceEvent : BounceEvent
-    {
-        /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:FuelSDK.ETBounceEvent"/> get since last batch.
-        /// </summary>
-        /// <value><c>true</c> if get since last batch; otherwise, <c>false</c>.</value>
+	{
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="T:FuelSDK.ETBounceEvent"/> get since last batch.
+		/// </summary>
+		/// <value><c>true</c> if get since last batch; otherwise, <c>false</c>.</value>
 		public bool GetSinceLastBatch { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:FuelSDK.ETBounceEvent"/> class and set get since last batch to false.
-        /// </summary>
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:FuelSDK.ETBounceEvent"/> class and set get since last batch to false.
+		/// </summary>
 		public ETBounceEvent() { GetSinceLastBatch = true; }
 		/// <summary>
 		/// Get <see cref="T:FuelSDK.GetReturn"/> object after initializaing LastRequestID.
@@ -30,9 +30,9 @@ namespace FuelSDK
 		/// </summary>
 		/// <returns><see cref="T:FuelSDK.InfoReturn"/> object</returns>
 		public InfoReturn Info() { return new InfoReturn(this); }
-    }
+	}
 
-    [Obsolete("ET_BounceEvent will be removed in future release. Please use ETBounceEvent instead.")]
+	[Obsolete("ET_BounceEvent will be removed in future release. Please use ETBounceEvent instead.")]
 	public class ET_BounceEvent : ETBounceEvent
 	{
 		
